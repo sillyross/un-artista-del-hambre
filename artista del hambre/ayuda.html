@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ayuda - Un artista del hambre</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <style>
+
+    section {
+      margin-top: 30px;
+      background-color: white;
+      padding: 20px;
+    }
+    details {
+      margin-bottom: 15px;
+    }
+    summary {
+      font-weight: bold;
+      cursor: pointer;
+      color: #0066cc;
+    }
+    a {
+      color: #0066cc;
+      text-decoration: none;
+    }
+    
+  </style>
+
+<body>
+  <header>
+    <h1>Un Artista del Hambre</h1>
+    <nav>
+      <ul>
+        <li><a href="pagina principal.html">Inicio</a></li>
+        <li><a href="informacion.html">Información</a></li>
+        <li><a href="impacto social.html">Impacto</a></li>
+        <li><a href="vision.html">Visión</a></li>
+        <li><a href="actualidad.html">Actualidad</a></li>
+        <li><a href="ayuda.html">Ayuda</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="cuestionario.html">Cuestionario</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <section>
+    <h2>Preguntas Frecuentes (FAQ)</h2>
+    <details>
+      <summary>¿Quién escribió "Un artista del hambre"?</summary>
+      <p>Franz Kafka, escritor checo de lengua alemana.</p>
+    </details>
+    <details>
+      <summary>¿Cuál es el tema principal de la obra?</summary>
+      <p>La incomprensión del artista por parte de la sociedad y la obsesión con el sufrimiento como forma de expresión.</p>
+    </details>
+    <details>
+      <summary>¿Qué tipo de obra es?</summary>
+      <p>Es un relato corto con elementos de realismo existencial y simbolismo.</p>
+    </details>
+    <details>
+      <summary>¿Dónde puedo leer la obra completa?</summary>
+      <p>Puedes encontrarla en bibliotecas digitales o sitios como Cervantes Virtual y Wikisource.</p>
+    </details>
+  </section>
+
+  <section>
+    <h2>Grupos y Sitios Relacionados</h2>
+    <ul>
+      <li><a href="https://www.cervantesvirtual.com/obra-visor/un-artista-del-hambre--0/html/" target="_blank">Biblioteca Virtual Miguel de Cervantes</a></li>
+      <li><a href="https://es.wikipedia.org/wiki/Un_artista_del_hambre" target="_blank">Wikipedia - Un artista del hambre</a></li>
+      <li><a href="https://www.goodreads.com/book/show/17690007-un-artista-del-hambre" target="_blank">Goodreads - Opiniones y reseñas</a></li>
+      <li><a href="https://www.facebook.com/groups/franzkafkaes" target="_blank">Grupo de Facebook: Franz Kafka en español</a></li>
+    </ul>
+  </section>
+
+  <div id="chatbot-container">
+  <div id="chatbot-header">¿Necesitas ayuda?</div>
+  <div id="chatbot-body">
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." />
+    <button onclick="enviarPregunta()">Enviar</button>
+  </div>
+</div>
+
+
+<script>
+  function enviarPregunta() {
+    const entrada = document.getElementById("chat-input");
+    const pregunta = entrada.value.trim();
+    if (!pregunta) return;
+
+    agregarMensaje("Tú", pregunta);
+    entrada.value = "";
+
+    const respuesta = obtenerRespuesta(pregunta.toLowerCase());
+    setTimeout(() => agregarMensaje("Bot", respuesta), 500);
+  }
+
+  function agregarMensaje(remitente, texto) {
+    const log = document.getElementById("chat-log");
+    const mensaje = document.createElement("div");
+    mensaje.innerHTML = `<strong>${remitente}:</strong> ${texto}`;
+    log.appendChild(mensaje);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function obtenerRespuesta(pregunta) {
+    if (pregunta.includes("contacto") || pregunta.includes("número")) {
+      return "Puedes escribirnos a UnArtistadelHambre@gmail.com o llamarnos al 444226134.";
+    } else if (pregunta.includes("inicio")) {
+      return "Puedes ir a la página de inicio haciendo clic en 'Inicio' en el menú superior.";
+    } else if (pregunta.includes("información")) {
+      return "La sección 'Información' se encuentra en el menú principal.";
+    } else if (pregunta.includes("impacto")) {
+      return "Puedes encontrar el 'Impacto' en el menú de navegación.";
+    } else if (pregunta.includes("videos")) {
+      return "La sección de videos está disponible en el menú principal como 'Videos'.";
+    } else {
+      return "Lo siento, no entendí tu pregunta. ¿Podrías reformularla?";
+    }
+  }
+</script>
+   <footer>
+    <p>Universidad Politécnica de San Luis Potosí</p>
+  </footer>
+</body>
+</html>

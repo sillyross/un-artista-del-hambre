@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="Explora el concepto del artista del hambre: arte, resistencia y expresión en el siglo XXI.">
+  <title>Un Artista del Hambre</title>
+  <link rel="stylesheet" href="style.css" />
+
+</head>
+<body>
+  <header>
+    <h1>Un Artista del Hambre</h1>
+    <nav>
+      <ul>
+        <li><a href="pagina principal.html">Inicio</a></li>
+        <li><a href="informacion.html">Información</a></li>
+        <li><a href="impacto social.html">Impacto</a></li>
+        <li><a href="vision.html">Visión</a></li>
+        <li><a href="actualidad.html">Actualidad</a></li>
+        <li><a href="ayuda.html">Ayuda</a></li>
+        <li><a href="contacto.html">Contacto</a></li>
+        <li><a href="cuestionario.html">Cuestionario</a></li>
+        <li><a href="galeria.html">Galería</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main>
+    <section class="blog">
+      <h2 style="text-align: center;">Blog de Opiniones y Críticas</h2>
+      <form id="form-comentario">
+        <input type="text" id="nombre" placeholder="Tu nombre" required />
+        <textarea id="comentario" placeholder="Escribe tu opinión o crítica aquí..." rows="4" required></textarea>
+
+        <div class="estrellas" id="estrellas">
+          <span class="estrella" data-valor="1">★</span>
+          <span class="estrella" data-valor="2">★</span>
+          <span class="estrella" data-valor="3">★</span>
+          <span class="estrella" data-valor="4">★</span>
+          <span class="estrella" data-valor="5">★</span>
+        </div>
+
+        <button type="submit">Publicar</button>
+      </form>
+
+      <div id="comentarios">
+      
+      </div>
+    </section>
+
+   <section>
+  <h2 style="text-align: center;">Formulario de Contacto</h2>
+  <form id="form-contacto" action="https://formsubmit.co/UnArtistadelHambre@gmail.com" method="POST" onsubmit="generarPDF()">
+    <input type="text" name="nombre" placeholder="Tu nombre" required />
+
+    <label for="fechaNacimiento">Fecha de nacimiento:</label>
+    <input type="date" name="fechaNacimiento" id="fechaNacimiento" required />
+
+    <input type="number" name="edad" placeholder="Tu edad" min="1" max="120" required />
+
+    <label for="ciudad">Ciudad:</label>
+    <select name="ciudad" id="ciudad" required>
+      <option value="">Selecciona tu ciudad</option>
+      <option value="Ciudad de México">Ciudad de México</option>
+      <option value="Guadalajara">Guadalajara</option>
+      <option value="Monterrey">Monterrey</option>
+      <option value="Puebla">Puebla</option>
+      <option value="San Luis Potosí">San Luis Potosí</option>
+      <option value="León">León</option>
+      <option value="Querétaro">Querétaro</option>
+      <option value="Toluca">Toluca</option>
+      <option value="Cancún">Cancún</option>
+      <option value="Mérida">Mérida</option>
+    </select>
+
+    <input type="email" name="email" placeholder="Tu correo electrónico" required />
+
+    <textarea name="mensaje" placeholder="Escribe tu mensaje..." rows="4" required></textarea>
+
+    <input type="hidden" name="_next" value="https://tusitio.com/gracias.html">
+    <input type="hidden" name="_captcha" value="false">
+
+    <button type="submit">Enviar</button>
+  </form>
+</section>
+    
+     <section>
+      <h2>Contacto</h2>
+      <p>¿Tienes preguntas o comentarios? Puedes contactarnos por correo electrónico a: UnArtistadelHambre@gmail.com</p>
+      <p>numero: 444226134</p>
+    </section>
+
+    <div id="chatbot-container">
+  <div id="chatbot-header">¿Necesitas ayuda?</div>
+  <div id="chatbot-body">
+    <div id="chat-log"></div>
+    <input type="text" id="chat-input" placeholder="Escribe tu pregunta..." />
+    <button onclick="enviarPregunta()">Enviar</button>
+  </div>
+</div>
+
+  </main>
+
+  <footer>
+    <p>Universidad Politécnica de San Luis Potosí</p>
+  </footer>
+
+  <script>
+    let calificacion = 0;
+    const estrellas = document.querySelectorAll('.estrella');
+
+    estrellas.forEach(estrella => {
+      estrella.addEventListener('click', () => {
+        calificacion = parseInt(estrella.getAttribute('data-valor'));
+        actualizarEstrellas(calificacion);
+      });
+    });
+
+    function actualizarEstrellas(valor) {
+      estrellas.forEach(e => {
+        const val = parseInt(e.getAttribute('data-valor'));
+        e.classList.toggle('seleccionada', val <= valor);
+      });
+    }
+
+    document.getElementById('form-comentario').addEventListener('submit', function(e) {
+      e.preventDefault();
+      const nombre = document.getElementById('nombre').value.trim();
+      const texto = document.getElementById('comentario').value.trim();
+      if (nombre && texto && calificacion > 0) {
+        const contenedor = document.getElementById('comentarios');
+        const nuevoComentario = document.createElement('div');
+        nuevoComentario.classList.add('comentario');
+        nuevoComentario.innerHTML = `
+          <h4>${nombre}</h4>
+          <p>${texto}</p>
+          <p>Calificación: ${'★'.repeat(calificacion)}${'☆'.repeat(5 - calificacion)}</p>
+        `;
+        contenedor.prepend(nuevoComentario);
+        this.reset();
+        actualizarEstrellas(0); // Reiniciar estrellas
+        calificacion = 0;
+      } else {
+        alert("Por favor completa todos los campos y selecciona una calificación.");
+      }
+    });
+  </script>
+
+<script>
+  function enviarPregunta() {
+    const entrada = document.getElementById("chat-input");
+    const pregunta = entrada.value.trim();
+    if (!pregunta) return;
+
+    agregarMensaje("Tú", pregunta);
+    entrada.value = "";
+
+    const respuesta = obtenerRespuesta(pregunta.toLowerCase());
+    setTimeout(() => agregarMensaje("Bot", respuesta), 500);
+  }
+
+  function agregarMensaje(remitente, texto) {
+    const log = document.getElementById("chat-log");
+    const mensaje = document.createElement("div");
+    mensaje.innerHTML = `<strong>${remitente}:</strong> ${texto}`;
+    log.appendChild(mensaje);
+    log.scrollTop = log.scrollHeight;
+  }
+
+  function obtenerRespuesta(pregunta) {
+    if (pregunta.includes("contacto") || pregunta.includes("número")) {
+      return "Puedes escribirnos a UnArtistadelHambre@gmail.com o llamarnos al 444226134.";
+    } else if (pregunta.includes("inicio")) {
+      return "Puedes ir a la página de inicio haciendo clic en 'Inicio' en el menú superior.";
+    } else if (pregunta.includes("información")) {
+      return "La sección 'Información' se encuentra en el menú principal.";
+    } else if (pregunta.includes("impacto")) {
+      return "Puedes encontrar el 'Impacto' en el menú de navegación.";
+    } else if (pregunta.includes("videos")) {
+      return "La sección de videos está disponible en el menú principal como 'Videos'.";
+    } else {
+      return "Lo siento, no entendí tu pregunta. ¿Podrías reformularla?";
+    }
+  }
+</script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script>
+  function generarPDF() {
+    const nombre = document.querySelector('[name="nombre"]').value.trim();
+    const fechaNacimiento = document.querySelector('[name="fechaNacimiento"]').value;
+    const edad = document.querySelector('[name="edad"]').value.trim();
+    const ciudad = document.querySelector('[name="ciudad"]').value;
+    const email = document.querySelector('[name="email"]').value.trim();
+    const mensaje = document.querySelector('[name="mensaje"]').value.trim();
+
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+    doc.text("Formulario de Contacto", 10, 10);
+    doc.text(`Nombre: ${nombre}`, 10, 20);
+    doc.text(`Fecha de nacimiento: ${fechaNacimiento}`, 10, 30);
+    doc.text(`Edad: ${edad}`, 10, 40);
+    doc.text(`Ciudad: ${ciudad}`, 10, 50);
+    doc.text(`Correo: ${email}`, 10, 60);
+    doc.text("Mensaje:", 10, 70);
+    doc.text(mensaje, 10, 80);
+
+    doc.save("Contacto_Artista_Hambre.pdf");
+  }
+</script>
+
+
+</body>
+</html>
+

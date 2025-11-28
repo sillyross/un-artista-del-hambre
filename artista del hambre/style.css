@@ -1,0 +1,352 @@
+ /* Reset básico */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f9f9f9;
+  color: #333;
+  line-height: 1.6;
+  padding: 0;
+  margin: 0;
+}
+
+/* Encabezado */
+header {
+  background-color: #333;
+  color: white;
+  padding: 20px 0;
+  text-align: center;
+}
+
+header h1 {
+  margin-bottom: 10px;
+}
+
+nav ul {
+  list-style: none;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+nav ul li {
+  margin: 0 10px;
+}
+
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  padding: 8px 12px;
+  transition: background 0.3s;
+}
+
+nav ul li a:hover {
+  background-color: #555;
+  border-radius: 5px;
+}
+
+/* Contenido principal */
+main {
+  padding: 40px 20px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+h2 {
+  color: #222;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Pie de página */
+footer {
+  background-color: #333;
+  color: white;
+  text-align: center;
+  padding: 15px 0;
+  position: relative;
+  bottom: 0;
+  width: 100%;
+}
+/* Galería dinámica */
+.galeria .imagenes {
+  display: flex;
+  gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.galeria img {
+  width: 200px;
+  height: auto;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0,0,0,0.2);
+}
+
+.galeria img:hover {
+  transform: scale(1.05);
+}
+
+/* Imagen ampliada */
+#lightbox {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.8);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+#lightbox img {
+  max-width: 80%;
+  max-height: 80%;
+  border: 5px solid white;
+  border-radius: 8px;
+}
+/* Botón */
+.boton-formulario {
+  display: inline-block;
+  background-color: #333;
+  color: white;
+  padding: 12px 20px;
+  text-decoration: none;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+  font-weight: bold;
+}
+
+.boton-formulario:hover {
+  background-color: #555;
+}
+
+/* Modal */
+.modal {
+  display: none;
+  position: fixed;
+  z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0,0,0,0.8);
+  justify-content: center;
+  align-items: center;
+}
+
+.modal-contenido {
+  background-color: white;
+  width: 90%;
+  max-width: 800px;
+  height: 80%;
+  padding: 0;
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Cierre adaptado */
+.cerrar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+/* iframe ocupa todo el modal */
+.modal-contenido iframe {
+  flex: 1;
+  border: none;
+  width: 100%;
+}
+
+/* Media Queries para móviles */
+@media (max-width: 600px) {
+  .modal-contenido {
+    width: 95%;
+    height: 85%;
+  }
+
+  .cerrar {
+    font-size: 24px;
+    top: 8px;
+    right: 10px;
+  }
+}
+
+}
+
+/* Botón de cerrar */
+.cerrar {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 28px;
+  color: #333;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 1001;
+}
+
+ .blog {
+      margin: 2em;
+      padding: 1em;
+      background-color: #f9f9f9;
+      border-radius: 10px;
+    }
+    .blog form textarea, .blog form input {
+      width: 100%;
+      margin-bottom: 1em;
+      padding: 0.5em;
+    }
+    .comentario {
+      background: #fff;
+      border-left: 4px solid #444;
+      margin-bottom: 1em;
+      padding: 1em;
+    }
+    .comentario h4 {
+      margin-top: 0;
+    }
+    .estrellas {
+      display: flex;
+      gap: 5px;
+      cursor: pointer;
+      margin-bottom: 1em;
+    }
+    .estrella {
+      font-size: 1.5em;
+      color: #ccc;
+      transition: color 0.2s;
+    }
+    .estrella.seleccionada {
+      color: gold;
+    }
+
+ #chatbot-container {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    width: 300px;
+    font-family: Arial, sans-serif;
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    background: white;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+    z-index: 9999;
+  }
+
+  #chatbot-header {
+    background-color: #333;
+    color: white;
+    padding: 10px;
+    border-radius: 10px 10px 0 0;
+    text-align: center;
+  }
+
+  #chatbot-body {
+    padding: 10px;
+  }
+
+  #chat-log {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-bottom: 10px;
+    font-size: 14px;
+  }
+
+  #chat-log div {
+    margin-bottom: 5px;
+  }
+
+  #chat-input {
+    width: 75%;
+    padding: 5px;
+  }
+
+  #chatbot-body button {
+    width: 20%;
+    padding: 5px;
+  }
+
+  form {
+  max-width: 500px;
+  margin: 40px auto;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  font-family: 'Segoe UI', sans-serif;
+}
+
+form h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+form input[type="text"],
+form input[type="email"],
+form input[type="number"],
+form input[type="date"],
+form select,
+form textarea {
+  width: 100%;
+  padding: 10px 12px;
+  margin: 10px 0;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 15px;
+  box-sizing: border-box;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form label {
+  font-weight: bold;
+  display: block;
+  margin-top: 10px;
+}
+
+form button {
+  display: block;
+  width: 100%;
+  padding: 12px;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 20px;
+  transition: background-color 0.3s ease;
+}
+
+form button:hover {
+  background-color: gray;
+}
+
+
